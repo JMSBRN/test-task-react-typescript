@@ -15,3 +15,5 @@ Notes:
 While editing a note, the user can create tags using the # symbol.
 For example: the user enters the text “I wanna go to #shop”. As you (end) the input, the corresponding tag should be created and displayed in the list below the text field.
 When editing a note, all words that match the tags should be highlighted.
+
+deploy: https://test-task-react-typescript.netlify.app/
