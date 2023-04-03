@@ -8,15 +8,10 @@ function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [tags, setTags] = useState<string[]>();
   const id: string = uuid();
-  const tagId: string = uuid();
 
   const handleChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
-    const currentInput = e.target.value;
-    setInput(currentInput);
-    const rgx = /#(\w+)/g;
-    const matchedArr = currentInput.match(rgx) as string[];
-    setTags(matchedArr ? matchedArr.map((tag) => tag.slice(1)) : []);
+    setInput(e.target.value);
   };
   const updateTags = (tasksArr: Task[]) => {
     const tagsArr: string[] = [];
@@ -46,8 +41,15 @@ function App() {
   };
   const handleDeleteTask = (id: string) => {
     setTasks(tasks.filter((el) => el.id !== id));
+    setTags((prevTags) => {
+      const tagsToRemove = tasks
+        .filter((el) => el.id === id)
+        .flatMap((el) => el.text?.match(/#(\w+)/g) || [])
+        .map((tag) => tag.slice(1));
+      return prevTags?.filter((tag) => !tagsToRemove.includes(tag));
+    });
   };
-  const handelEditTask = (text: string, id: string) => {
+  const handleEditTask = (text: string, id: string) => {
     if (input) {
       const newtasks = tasks.map((el) => {
         if (el.id === id) {
@@ -80,8 +82,8 @@ function App() {
       <button onClick={handlAddTask}>New Task</button>
       <div className="tags">
         {tags &&
-          tags.map((el) => (
-            <div key={tagId} className="tag">
+          tags.map((el, idx) => (
+            <div key={idx.toString()} className="tag">
               {el}
             </div>
           ))}
@@ -99,7 +101,7 @@ function App() {
             <div className="btns">
               {el.update && (
                 <button
-                  onClick={() => handelEditTask(input, el.id)}
+                  onClick={() => handleEditTask(input, el.id)}
                 >
                   update
                 </button>
