@@ -30,7 +30,7 @@
     display: inline-block;
     border-radius: 5px;
     padding: 10px 20px;
-    margin: 5px;
+    margin: 20px;
     font-size: 16px;
     font-weight: bold;
     text-align: center;
@@ -68,8 +68,19 @@
   margin: 5px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  border: 1px solid $secondary-color;
+  justify-content: space-between;
+  color: $secondary-color;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  & span {
+    margin-left: 10px;
+  }
+  & .btns {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 }
 .task-text {
   cursor: pointer;
@@ -81,6 +92,5 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    border: 1px solid $secondary-color;
   }
 }
