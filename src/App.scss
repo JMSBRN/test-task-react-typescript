@@ -55,6 +55,24 @@
     }
    }
 }
+.tags {
+  margin: 10px;
+  width: 500px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: rgb(219, 237, 231);
+  & .tag {
+    width: auto;
+    margin: 3px;
+    padding: 3px;
+    border-radius: 3px;
+    color: $white-color;
+    background-color: $success-color;
+    cursor: pointer;
+  }
+}
 .tasks {
   margin-top: 20px;
   width: 90%;
