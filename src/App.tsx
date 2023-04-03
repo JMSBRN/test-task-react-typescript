@@ -7,7 +7,6 @@ function App() {
   const [input, setInput] = useState<string>("");
   const [tasks, setTasks] = useState<Task[]>([]);
   const [tags, setTags] = useState<string[]>();
-  const [highlightText, setHighlightText] = useState();
   const id: string = uuid();
   const rgx = /#(\w+)/g;
 
@@ -93,15 +92,20 @@ function App() {
     setInput(text);
   };
 
+  const handleDeleteTag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const id = e.currentTarget.id;
+    console.log(id);
+  };
+
   return (
     <div className="app-container">
-      <h3>Text editor for notes with tags.</h3>
+      <h2>Text editor for notes with tags.</h2>
       <textarea value={input} onChange={(e) => handleChangeTextArea(e)} />
       <button onClick={handlAddTask}>New Task</button>
       <div className="tags">
         {tags &&
           tags.map((el, idx) => (
-            <div key={idx.toString()} className="tag">
+            <div id={el} key={idx.toString()} className="tag" onClick={e => handleDeleteTag(e)}>
               {el}
             </div>
           ))}

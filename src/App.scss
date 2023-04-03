@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700;900&display=swap');
 @import './styles/variables';
 @import './styles/mixins'; 
 
-/* Start with styles for small screens */
+ body {
+  font-family: 'Roboto', sans-serif;
+ }
+
 .app-container {
   min-height: 100vh;
   padding: 20px;
@@ -11,6 +15,9 @@
   justify-content: flex-start;
   font-size: 16px;
   border: 1px solid $secondary-color;
+  & h2 {
+    color: $info-color;
+  }
   & textarea {
     display: block;
     width: 100%;
