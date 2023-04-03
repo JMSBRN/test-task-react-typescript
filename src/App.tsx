@@ -16,6 +16,7 @@ function App() {
     setTasks(tasks.filter((el) => el.id !== id));
   };
   const handelEditTask = (text: string, id: string) => {
+    if(input) {
     const newtasks = tasks.map((el) => {
       if (el.id === id) {
         el.text = text;
@@ -24,6 +25,7 @@ function App() {
     });
     setTasks(newtasks);
     setInput('');
+  }
   };
   const handleGetText = (text: string) => {    
     setInput(text);
@@ -32,14 +34,14 @@ function App() {
   return (
     <div className="app-container">
       <h3>Text editor for notes with tags.</h3>
-      <input type="text" value={input} onChange={(e) => setInput(e.target.value)} />
+      <textarea value={input} onChange={(e) => setInput(e.target.value)} />
       <button onClick={handlAddTask}>New Task</button>
       <div className="tasks">
         {
         tasks.map((el, idx) => 
           <div id={el.id} className="task" key={el.id}>
             <span>{+(idx + 1)}</span>
-            <div className="task-text" onClick={() => handleGetText(el.text || '')}>{el.text}</div>
+            <div className="task-text" onClick={() => handleGetText(el.text || '')}><p>{el.text}</p></div>
             <div className="btns">
               <button onClick={() => handelEditTask(input || "", el.id || "")}>
                 update
