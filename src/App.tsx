@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 
 function App() {
   const [input, setInput] = useState<string>('');
-  const [tasks, setTasks] = useState<{ id?: string; text?: string }[]>([]);
+  const [tasks, setTasks] = useState<{ id?: string; text?: string, update?: boolean }[]>([]);
   const id: string = uuid();
   const handlAddTask = () => {
     (input && tasks.length <= 10)  &&
@@ -20,6 +20,9 @@ function App() {
     const newtasks = tasks.map((el) => {
       if (el.id === id) {
         el.text = text;
+        if(input) {
+          el.update = false;
+        }
       }
       return el;
     });
@@ -27,7 +30,14 @@ function App() {
     setInput('');
   }
   };
-  const handleGetText = (text: string) => {    
+  const handleGetText = (text: string, id: string) => {    
+    const newtasks = tasks.map((el) => {
+      if (el.id === id) {
+        el.update = true;        
+      }
+      return el;
+    });
+    setTasks(newtasks);
     setInput(text);
   };
 
@@ -41,11 +51,13 @@ function App() {
         tasks.map((el, idx) => 
           <div id={el.id} className="task" key={el.id}>
             <span>{+(idx + 1)}</span>
-            <div className="task-text" onClick={() => handleGetText(el.text || '')}><p>{el.text}</p></div>
+            <div className="task-text" onClick={() => handleGetText(el.text || '', el.id  || "" )}><p>{el.text}</p></div>
             <div className="btns">
+              { el.update &&
               <button onClick={() => handelEditTask(input || "", el.id || "")}>
                 update
               </button>
+              }
               <button onClick={() => handleDeleteTask(el.id || "")}>
                 delete
               </button>
