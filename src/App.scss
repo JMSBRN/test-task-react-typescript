@@ -1,0 +1,30 @@
+@import './styles/variables';
+@import './styles/mixins'; 
+
+/* Start with styles for small screens */
+.app-container {
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+  border: 1px solid $secondary-color;
+}
+.tasks {
+  margin-top: 10px;
+  width: 90%;
+  max-width: 400px;
+}
+.task-text {
+  cursor: pointer;
+}
+.task {
+  width: 100%;
+  min-width: 300px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
