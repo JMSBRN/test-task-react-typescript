@@ -7,7 +7,9 @@ function App() {
   const [input, setInput] = useState<string>("");
   const [tasks, setTasks] = useState<Task[]>([]);
   const [tags, setTags] = useState<string[]>();
+  const [highlightText, setHighlightText] = useState();
   const id: string = uuid();
+  const rgx = /#(\w+)/g;
 
   const handleChangeTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
@@ -15,24 +17,23 @@ function App() {
   };
   const updateTags = (tasksArr: Task[]) => {
     const tagsArr: string[] = [];
-    tasksArr.forEach(task => {
-      const rgx = /#(\w+)/g;
+    tasksArr.forEach((task) => {
       const matchedArr = task.text?.match(rgx) as string[];
       if (matchedArr) {
-        matchedArr.forEach(tag => {
+        matchedArr.forEach((tag) => {
           const formattedTag = tag.slice(1);
           if (!tagsArr.includes(formattedTag)) {
             tagsArr.push(formattedTag);
           }
-        })
+        });
       }
-    })
+    });
     setTags(tagsArr);
   };
   useEffect(() => {
     updateTags(tasks);
   }, [tasks]);
-  
+
   const handlAddTask = () => {
     input &&
       tasks.length <= 10 &&
@@ -44,7 +45,7 @@ function App() {
     setTags((prevTags) => {
       const tagsToRemove = tasks
         .filter((el) => el.id === id)
-        .flatMap((el) => el.text?.match(/#(\w+)/g) || [])
+        .flatMap((el) => el.text?.match(rgx) || [])
         .map((tag) => tag.slice(1));
       return prevTags?.filter((tag) => !tagsToRemove.includes(tag));
     });
@@ -64,14 +65,31 @@ function App() {
       setInput("");
     }
   };
+  const replaceTag = (text: string) => {
+    const matchedArr = text?.match(rgx) as string[];
+    if (matchedArr) {
+      matchedArr
+        .map((el) => {
+          return el.slice(1);
+        })
+        .forEach((el) => {
+          text = text.replaceAll(el, `<span>${el}</span>`);
+        });
+      return text;
+    }
+  };
   const handleGetText = (text: string, id: string) => {
-    const newtasks = tasks.map((el) => {
+    const newTasks = tasks.map((el) => {
       if (el.id === id) {
         el.update = true;
+        const newText = replaceTag(el.text);
+        if (newText) {
+          el.text = newText;
+        }
       }
       return el;
     });
-    setTasks(newtasks);
+    setTasks(newTasks);
     setInput(text);
   };
 
@@ -96,19 +114,15 @@ function App() {
               className="task-text"
               onClick={() => handleGetText(el.text, el.id)}
             >
-              <p>{el.text}</p>
+              {<div dangerouslySetInnerHTML={{ __html: el.text }}></div>}
             </div>
             <div className="btns">
               {el.update && (
-                <button
-                  onClick={() => handleEditTask(input, el.id)}
-                >
+                <button onClick={() => handleEditTask(input, el.id)}>
                   update
                 </button>
               )}
-              <button onClick={() => handleDeleteTask(el.id)}>
-                delete
-              </button>
+              <button onClick={() => handleDeleteTask(el.id)}>delete</button>
             </div>
           </div>
         ))}

@@ -111,4 +111,7 @@
     align-items: flex-start;
     justify-content: center;
   }
+  & span {
+    background-color: $warning-color;
+  }
 }
