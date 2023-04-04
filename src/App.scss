@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700;900&display=swap');
 @import './styles/variables';
 @import './styles/mixins'; 
+@import './components/add-tsk-form/addTaskForm.scss';
+@import './components/tags/Tags.scss';
+@import './components/tasks/Tasks.scss';
 
  body {
   font-family: 'Roboto', sans-serif;
@@ -18,107 +21,6 @@
   & h2 {
     color: $info-color;
   }
-  & textarea {
-    display: block;
-    width: 100%;
-    max-width: 500px;
-    padding: 10px;
-    font-size: 16px;
-    line-height: 1.5;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: none;
-      &:focus {
-        border-color: #007bff;
-        outline: none;
-      }
-  }
-  & button {
-    display: inline-block;
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin: 20px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    background-color: $primary-color;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-     &:hover {
-      background-color: #0062cc;
-    }
-    
-    &:focus {
-      outline: none;
-    }
-    
-    &:active {
-      box-shadow: none;
-      transform: translateY(1px);
-    }
-   }
+ 
 }
-.tags {
-  margin: 10px;
-  width: 500px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  background-color: rgb(219, 237, 231);
-  & .tag {
-    width: auto;
-    margin: 3px;
-    padding: 3px;
-    border-radius: 3px;
-    color: $white-color;
-    background-color: $success-color;
-    cursor: pointer;
-  }
-}
-.tasks {
-  margin-top: 20px;
-  width: 90%;
-  min-width: 600px;
-  height: auto;
-  max-width: 400px;
-}
-.task {
-  width: 100%;
-  min-width: 300px;
-  margin: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: $secondary-color;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  & span {
-    margin-left: 10px;
-  }
-  & .btns {
-    width: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-  }
-}
-.task-text {
-  cursor: pointer;
-  & p {
-    width: 150px;
-    padding: 3px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-  }
-  & span {
-    background-color: $warning-color;
-  }
-}
+

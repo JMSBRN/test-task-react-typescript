@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./App.scss";
 import { v4 as uuid } from "uuid";
 import { Task } from "./interfaces/appInterfaces";
+import AddTaskForm from "./components/add-tsk-form/AddTaskForm";
+import Tags from "./components/tags/Tags";
+import Tasks from "./components/tasks/Tasks";
 
 function App() {
   const [input, setInput] = useState<string>("");
@@ -100,37 +103,20 @@ function App() {
   return (
     <div className="app-container">
       <h2>Text editor for notes with tags.</h2>
-      <textarea value={input} onChange={(e) => handleChangeTextArea(e)} />
-      <button onClick={handlAddTask}>New Task</button>
-      <div className="tags">
-        {tags &&
-          tags.map((el, idx) => (
-            <div id={el} key={idx.toString()} className="tag" onClick={e => handleDeleteTag(e)}>
-              {el}
-            </div>
-          ))}
-      </div>
-      <div className="tasks">
-        {tasks.map((el, idx) => (
-          <div id={el.id} className="task" key={el.id}>
-            <span>{+(idx + 1)}</span>
-            <div
-              className="task-text"
-              onClick={() => handleGetText(el.text, el.id)}
-            >
-              {<div dangerouslySetInnerHTML={{ __html: el.text }}></div>}
-            </div>
-            <div className="btns">
-              {el.update && (
-                <button onClick={() => handleEditTask(input, el.id)}>
-                  update
-                </button>
-              )}
-              <button onClick={() => handleDeleteTask(el.id)}>delete</button>
-            </div>
-          </div>
-        ))}
-      </div>
+      <AddTaskForm
+        handlAddTask={handlAddTask}
+        input={input}
+        handleChangeTextArea={handleChangeTextArea}
+        textButton={"New Task"}
+      />
+      <Tags handleDeleteTag={handleDeleteTag} tags={tags!} />
+      <Tasks
+        input={input}
+        handleDeleteTask={handleDeleteTask}
+        handleEditTask={handleEditTask}
+        handleGetText={handleGetText}
+        tasks={tasks}
+      />
     </div>
   );
 }
