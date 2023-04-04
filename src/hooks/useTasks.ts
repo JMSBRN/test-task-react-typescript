@@ -47,18 +47,20 @@ export const useTasks = (props: UseTasksProps) => {
         }
       };
       const handleGetText = (text: string, id: string) => {
-        const newTasks = tasks.map((el) => {
-          if (el.id === id) {
-            el.update = true;
-            const newText = replaceTag(el.text);
-            if (newText) {
-              el.text = newText;
-            }
-          }
-          return el;
-        });
-        setTasks(newTasks);
-        setTextInput(text);
+        if(!input) {
+            const newTasks = tasks.map((el) => {
+              if (el.id === id) {
+                el.update = true;
+                const newText = replaceTag(el.text);
+                if (newText) {
+                  el.text = newText;
+                }
+              }
+              return el;
+            });
+            setTasks(newTasks);
+            setTextInput(text);
+        }
       };
 
 

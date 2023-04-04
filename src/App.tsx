@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./App.scss";
 import { Task } from "./interfaces/appInterfaces";
 import AddTaskForm from "./components/add-tsk-form/AddTaskForm";
