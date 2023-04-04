@@ -6,7 +6,7 @@ interface UseTasksProps {
     tasks: Task[];
     clearInput: () => void;
     setTasks: (value: React.SetStateAction<Task[]>) => void;
-    setTags:  React.Dispatch<React.SetStateAction<string[] | undefined>>;
+    setTags:  React.Dispatch<React.SetStateAction<string[]>>;
     setTextInput: (text: string) => void;
     replaceTag: (text: string) => string | undefined;
 }

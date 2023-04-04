@@ -13,7 +13,8 @@ const Tasks = (props: TasksProps) => {
   return (
     <div className="tasks">
     {tasks.map((el, idx) => (
-      <div id={el.id} className="task" key={el.id}>
+
+      <div id={el.id} className="task" style={{ display:  el.hidden ? 'none' : 'flex' }} key={el.id}>
         <span>{+(idx + 1)}</span>
         <div
           className="task-text"

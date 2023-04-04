@@ -12,7 +12,7 @@ function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const { input, handleChangeTextArea, setTextInput, clearInput } = useInput();
   const useTagsProps = { tasks, setTasks };
-  const { tags, replaceTag, setTags, handleDeleteTag } = useTags(useTagsProps);
+  const { tags, replaceTag, setTags, onClickTag } = useTags(useTagsProps);
   const useTasksProps = {
     input,
     tasks,
@@ -29,12 +29,12 @@ function App() {
     <div className="app-container">
       <h2>Text editor for notes with tags.</h2>
       <AddTaskForm
-        handlAddTask={handlAddTask}
         input={input}
+        handlAddTask={handlAddTask}
         handleChangeTextArea={handleChangeTextArea}
         textButton={"New Task"}
       />
-      <Tags onClick={handleDeleteTag} tags={tags!} />
+      <Tags onClick={onClickTag} tags={tags!} />
       <Tasks
         input={input}
         handleDeleteTask={handleDeleteTask}
