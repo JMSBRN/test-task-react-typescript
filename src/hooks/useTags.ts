@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Task } from "../interfaces/appInterfaces";
 
 interface UseTagsProps {
@@ -8,26 +8,30 @@ interface UseTagsProps {
 export const useTags = (props: UseTagsProps) => {
   const { tasks, setTasks } = props;
   const [tags, setTags] = useState<string[]>(JSON.parse(localStorage.getItem("tags") || "[]"));
-  const rgx = /#(\w+)/g;
-
-  const updateTags = (tasksArr: Task[]) => {
-    const tagsArr: string[] = [];
-    tasksArr.forEach((task) => {
-      const matchedArr = task.text?.match(rgx) as string[];
-      if (matchedArr) {
-        matchedArr.forEach((tag) => {
-          const formattedTag = tag.slice(1);
-          if (!tagsArr.includes(formattedTag)) {
-            tagsArr.push(formattedTag);
-          }
-        });
-      }
-    });
-    setTags(tagsArr);
-  };
+  const rgx = useMemo(() =>  /#(\w+)/g, []);
+  
+  const memoizedUpdateTags = useCallback(
+    (tasksArr: Task[]) => {
+      const tagsArr: string[] = [];
+      tasksArr.forEach((task) => {
+        const matchedArr = task.text?.match(rgx) as string[];
+        if (matchedArr) {
+          matchedArr.forEach((tag) => {
+            const formattedTag = tag.slice(1);
+            if (!tagsArr.includes(formattedTag)) {
+              tagsArr.push(formattedTag);
+            }
+          });
+        }
+      });
+      setTags(tagsArr);
+    },
+    [rgx],
+  )
+  
   useEffect(() => {
-    updateTags(tasks);
-  }, [tasks]);
+    memoizedUpdateTags(tasks);
+  }, [memoizedUpdateTags, tasks]);
   
   useEffect(() => {
     localStorage.setItem("tags", JSON.stringify(tags));
