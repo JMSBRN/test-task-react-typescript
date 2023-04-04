@@ -7,7 +7,7 @@ interface UseTagsProps {
 }
 export const useTags = (props: UseTagsProps) => {
   const { tasks, setTasks } = props;
-  const [tags, setTags] = useState<string[]>([]);
+  const [tags, setTags] = useState<string[]>(JSON.parse(localStorage.getItem("tags") || "[]"));
   const rgx = /#(\w+)/g;
 
   const updateTags = (tasksArr: Task[]) => {
@@ -28,6 +28,10 @@ export const useTags = (props: UseTagsProps) => {
   useEffect(() => {
     updateTags(tasks);
   }, [tasks]);
+  
+  useEffect(() => {
+    localStorage.setItem("tags", JSON.stringify(tags));
+  }, [tags]);
 
   const replaceTag = (text: string) => {
     const matchedArr = text?.match(rgx) as string[];
