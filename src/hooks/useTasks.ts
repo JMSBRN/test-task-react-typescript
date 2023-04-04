@@ -30,6 +30,7 @@ export const useTasks = (props: UseTasksProps) => {
             .map((tag) => tag.slice(1));
           return prevTags?.filter((tag) => !tagsToRemove.includes(tag));
         });
+        clearInput();
       };
       const handleEditTask = (text: string, id: string) => {
         if (input) {

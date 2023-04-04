@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { Task } from "../interfaces/appInterfaces";
 
-export const useTags = (tasks: Task[]) => {
+interface UseTagsProps {
+  tasks: Task[];
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+}
+export const useTags = (props: UseTagsProps) => {
+    const { tasks, setTasks} = props;
     const [tags, setTags] = useState<string[]>();
     const rgx = /#(\w+)/g;
 
@@ -41,7 +46,7 @@ export const useTags = (tasks: Task[]) => {
       
   const handleDeleteTag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const id = e.currentTarget.id;
-    console.log(id);
+    setTasks(tasks.filter(el => el.text.includes(id)));
   };
       return { tags, replaceTag, setTags, handleDeleteTag };
 }

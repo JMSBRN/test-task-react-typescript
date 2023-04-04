@@ -2,10 +2,10 @@ import React from "react";
 
 interface TagsProps {
   tags: string[];
-  handleDeleteTag: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 const Tags = (props: TagsProps) => {
-  const { tags, handleDeleteTag } = props;
+  const { tags, onClick } = props;
   return (
     <div className="tags">
       {tags &&
@@ -14,7 +14,7 @@ const Tags = (props: TagsProps) => {
             id={el}
             key={idx.toString()}
             className="tag"
-            onClick={(e) => handleDeleteTag(e)}
+            onClick={(e) => onClick(e)}
           >
             {el}
           </div>

@@ -10,12 +10,20 @@ import { useTasks } from "./hooks/useTasks";
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
-
-const { input , handleChangeTextArea, setTextInput, clearInput } = useInput();
-const { tags, replaceTag, setTags, handleDeleteTag } = useTags(tasks);
-const useTasksProps ={input, tasks, setTasks, clearInput, setTags, setTextInput, replaceTag };
-const { handlAddTask, handleDeleteTask, handleEditTask, handleGetText } = useTasks(useTasksProps);
-
+  const { input, handleChangeTextArea, setTextInput, clearInput } = useInput();
+  const useTagsProps = { tasks, setTasks };
+  const { tags, replaceTag, setTags, handleDeleteTag } = useTags(useTagsProps);
+  const useTasksProps = {
+    input,
+    tasks,
+    setTasks,
+    clearInput,
+    setTags,
+    setTextInput,
+    replaceTag,
+  };
+  const { handlAddTask, handleDeleteTask, handleEditTask, handleGetText } =
+    useTasks(useTasksProps);
 
   return (
     <div className="app-container">
@@ -26,7 +34,7 @@ const { handlAddTask, handleDeleteTask, handleEditTask, handleGetText } = useTas
         handleChangeTextArea={handleChangeTextArea}
         textButton={"New Task"}
       />
-      <Tags handleDeleteTag={handleDeleteTag} tags={tags!} />
+      <Tags onClick={handleDeleteTag} tags={tags!} />
       <Tasks
         input={input}
         handleDeleteTask={handleDeleteTask}
