@@ -34,7 +34,7 @@ function App() {
         handleChangeTextArea={handleChangeTextArea}
         textButton={"New Task"}
       />
-      <Tags onClick={onClickTag} tags={tags!} />
+      <Tags tasks={tasks} setTasks={setTasks} onClick={onClickTag} tags={tags} />
       <Tasks
         input={input}
         handleDeleteTask={handleDeleteTask}

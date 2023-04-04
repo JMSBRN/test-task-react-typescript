@@ -15,6 +15,9 @@
       background-color: $success-color;
       cursor: pointer;
     }
+    & button {
+      margin: 20px;
+    }
   }
   .tag.active {
     background-color: $noactive-color;
