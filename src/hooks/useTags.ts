@@ -47,7 +47,13 @@ export const useTags = (props: UseTagsProps) => {
     const id = e.currentTarget.id;
     const updatedTasks = tasks.map(task => {
       if (task.text.includes(id)) {
-        return { ...task, hidden: !task.hidden };
+        const updatedTask = { ...task, hidden: !task.hidden };
+        if (updatedTask.hidden) {
+          e.currentTarget.classList.add("active");
+        } else {
+          e.currentTarget.classList.remove("active");
+        }
+        return updatedTask;
       }
       return task;
     });
