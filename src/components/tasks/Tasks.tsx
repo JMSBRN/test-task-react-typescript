@@ -1,38 +1,55 @@
 import React from 'react';
 import { Task, TaskFunction } from '../../interfaces/appInterfaces';
+import TaskItem from '../task-item/TaskItem';
+import { Reorder } from 'framer-motion';
 
 interface TasksProps {
-  input: string;  
+  input: string;
   tasks: Task[];
-  handleGetText:  TaskFunction;
-  handleEditTask:  TaskFunction;
+  setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  handleGetText: TaskFunction;
+  handleEditTask: TaskFunction;
   handleDeleteTask: (id: string) => void;
 }
 const Tasks = (props: TasksProps) => {
-    const {input, tasks, handleDeleteTask, handleEditTask, handleGetText } = props;
+  const {
+    input,
+    tasks,
+    setTasks,
+    handleDeleteTask,
+    handleEditTask,
+    handleGetText,
+  } = props;
   return (
-    <div className="tasks">
-    {tasks.map((el, idx) => (
-
-      <div id={el.id} className="task" style={{ display:  el.hidden ? 'none' : 'flex' }} key={el.id}>
-        <span>{+(idx + 1)}</span>
-        <div
-          className="task-text"
-          onClick={() => handleGetText(el.text, el.id)}
-        >
-          {<p dangerouslySetInnerHTML={{ __html: el.text }}></p>}
-        </div>
-        <div className="btns">
-          {el.update && (
-            <button className='btn-update' onClick={() => handleEditTask(input, el.id)}>
-              update
-            </button>
-          )}
-          <button onClick={() => handleDeleteTask(el.id)}>delete</button>
-        </div>
+    <Reorder.Group
+      as="div"
+      axis="y"
+      onReorder={(tasks) => {
+        setTasks(tasks);
+      }}
+      values={tasks}
+    >
+      <div className="tasks">
+        {tasks.map((el, idx) => (
+          <Reorder.Item
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            key={el.id}
+            value={el}
+          >
+            <TaskItem
+              idx={idx}
+              input={input}
+              el={el}
+              handleDeleteTask={handleDeleteTask}
+              handleEditTask={handleEditTask}
+              handleGetText={handleGetText}
+            />
+          </Reorder.Item>
+        ))}
       </div>
-    ))}
-  </div>
+    </Reorder.Group>
   );
 };
 

@@ -40,6 +40,7 @@ function App() {
       />
       <Tags tasks={tasks} setTasks={setTasks} onClick={onClickTag} tags={tags} />
       <Tasks
+        setTasks={setTasks}
         input={input}
         handleDeleteTask={handleDeleteTask}
         handleEditTask={handleEditTask}
