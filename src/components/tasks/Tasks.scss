@@ -1,7 +1,20 @@
 .tasks {
-  margin-top: 20px;
+  margin: 20px auto;
   width: 85vw;
   max-width: 800px;
   height: auto;
   list-style: none;
+}
+.start-note {
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: $secondary-color;
+  & p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    word-break: break-word;
+  }
 }
