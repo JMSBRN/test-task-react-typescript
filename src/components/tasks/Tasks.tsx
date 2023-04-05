@@ -76,7 +76,8 @@ const Tasks = (props: TasksProps) => {
             </p>
 
             <p>
-              <h4>Note!</h4>
+              Note!
+              <br />
               That you can add multiple tags to a note by using "#"
               followed by the tag name, separated by spaces. For example, "#shop
               #groceries #errands".

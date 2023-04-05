@@ -10,9 +10,9 @@ import { useTasks } from './hooks/useTasks';
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>(JSON.parse(localStorage.getItem('tasks') || '[]'));
-  const { input, handleChangeTextArea, setTextInput, clearInput } = useInput();
   const useTagsProps = { tasks, setTasks };
   const { tags, replaceTag, setTags, onClickTag } = useTags(useTagsProps);
+  const { input, handleChangeTextArea, setTextInput, clearInput } = useInput(setTags);
   const useTasksProps = {
     input,
     tasks,
