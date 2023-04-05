@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export const useInput = () => {
   const [input , setInput] = useState('');
@@ -11,4 +11,4 @@ export const useInput = () => {
   const setTextInput = (text: string) => setInput(text);
 
   return { input, setTextInput, clearInput, handleChangeTextArea } ;
-}
+};

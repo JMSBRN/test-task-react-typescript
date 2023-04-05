@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Task, TaskFunction } from '../../interfaces/appInterfaces';
 
 interface TasksProps {
@@ -33,7 +33,7 @@ const Tasks = (props: TasksProps) => {
       </div>
     ))}
   </div>
-  )
-}
+  );
+};
 
 export default Tasks;

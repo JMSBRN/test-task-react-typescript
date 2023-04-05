@@ -1,5 +1,5 @@
-import { Task } from "../interfaces/appInterfaces";
-import { v4 as uuid } from "uuid";
+import { Task } from '../interfaces/appInterfaces';
+import { v4 as uuid } from 'uuid';
 
 interface UseTasksProps {
     input: string;
@@ -66,4 +66,4 @@ export const useTasks = (props: UseTasksProps) => {
 
 
    return { handlAddTask, handleDeleteTask, handleEditTask, handleGetText };
-}
+};

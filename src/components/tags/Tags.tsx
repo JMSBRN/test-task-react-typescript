@@ -1,5 +1,5 @@
-import React from "react";
-import { Task } from "../../interfaces/appInterfaces";
+import React from 'react';
+import { Task } from '../../interfaces/appInterfaces';
 
 interface TagsProps {
   tasks: Task[];
@@ -13,7 +13,7 @@ const Tags = (props: TagsProps) => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     if (e.currentTarget.parentNode) {
-      const childElements = e.currentTarget.parentNode.querySelectorAll(".tag");
+      const childElements = e.currentTarget.parentNode.querySelectorAll('.tag');
       if (childElements) {
         childElements.forEach((child) => {
           child.className = 'tag';

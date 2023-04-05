@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
  interface AddTaskFormProps {
     input: string;
@@ -13,7 +13,7 @@ const AddTaskForm = (props: AddTaskFormProps ) => {
       <textarea value={input} onChange={(e) => handleChangeTextArea(e)} />
       <button onClick={handlAddTask}>{textButton}</button>
     </div>
-  )
-}
+  );
+};
 
 export default AddTaskForm;

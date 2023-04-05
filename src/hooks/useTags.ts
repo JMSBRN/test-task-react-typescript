@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { Task } from "../interfaces/appInterfaces";
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Task } from '../interfaces/appInterfaces';
 
 interface UseTagsProps {
   tasks: Task[];
@@ -7,7 +7,7 @@ interface UseTagsProps {
 }
 export const useTags = (props: UseTagsProps) => {
   const { tasks, setTasks } = props;
-  const [tags, setTags] = useState<string[]>(JSON.parse(localStorage.getItem("tags") || "[]"));
+  const [tags, setTags] = useState<string[]>(JSON.parse(localStorage.getItem('tags') || '[]'));
   const rgx = useMemo(() =>  /#(\w+)/g, []);
   
   const memoizedUpdateTags = useCallback(
@@ -27,14 +27,14 @@ export const useTags = (props: UseTagsProps) => {
       setTags(tagsArr);
     },
     [rgx],
-  )
+  );
   
   useEffect(() => {
     memoizedUpdateTags(tasks);
   }, [memoizedUpdateTags, tasks]);
   
   useEffect(() => {
-    localStorage.setItem("tags", JSON.stringify(tags));
+    localStorage.setItem('tags', JSON.stringify(tags));
   }, [tags]);
 
   const replaceTag = (text: string) => {
@@ -57,9 +57,9 @@ export const useTags = (props: UseTagsProps) => {
       if (task.text.includes(id)) {
         const updatedTask = { ...task, hidden: !task.hidden };
         if (updatedTask.hidden) {
-          e.currentTarget.classList.add("active");
+          e.currentTarget.classList.add('active');
         } else {
-          e.currentTarget.classList.remove("active");
+          e.currentTarget.classList.remove('active');
         }
         return updatedTask;
       }
@@ -68,4 +68,4 @@ export const useTags = (props: UseTagsProps) => {
     setTasks(updatedTasks);
   };
   return { tags, replaceTag, setTags, onClickTag };
-}
+};
