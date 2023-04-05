@@ -1,5 +1,6 @@
 /* Colors */
 $primary-color: #007bff;
+$primary-color-hover: #0266d0;
 $secondary-color: #6c757d;
 $success-color: #28a745;
 $warning-color: #ffc107;
@@ -8,6 +9,11 @@ $info-color: #17a2b8;
 $white-color: #ffffff;
 $noactive-color: #bdbebf;
 $black-color: #323232;
+
+
+/* Shadow */
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
 
 /* Typography */
 $body-font-family: 'Open Sans', sans-serif;

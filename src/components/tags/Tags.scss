@@ -1,60 +1,28 @@
 .tags-container {
-  width: 600px;
+  width: 100%;
   padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex-center-sp-btwn;
   & button {
-    display: inline-block;
-    border-radius: 5px;
-    padding: 5px 5px;
-    margin: 20px;
-    font-size: 15px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    background-color: $primary-color;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-    &:hover {
-        background-color: #0062cc;
-    }
-    
-    &:focus {
-        outline: none;
-    }
-    
-    &:active {
-        box-shadow: none;
-      transform: translateY(1px);
-    }
-    }
+    @include button;
+    background-color: rgba(23, 23, 23, 0.2);
   }
-
+}
 .tags {
-    margin: 10px;
-    width: 500px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    & .tag {
-      width: auto;
-      margin: 3px;
-      padding: 5px 10px;
-      border-radius: 3px;
-      color: $white-color;
-      background-color: $success-color;
-      cursor: pointer;
-    }
-    & button {
-      margin: 20px;
-    }
+  margin: 10px;
+  width: 500px;
+  height: 30px;
+  @include flex-center-start;
+  & .tag {
+    width: auto;
+    margin: 3px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: $white-color;
+    background-color: $success-color;
+    cursor: pointer;
   }
-  .tag.active {
-    background-color: $noactive-color;
-    color: $black-color;
-  }
+}
+.tag.active {
+  background-color: $noactive-color;
+  color: $black-color;
+}

@@ -1,53 +1,22 @@
 .add-task-from {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    @include flex-col-center-start;
     font-size: 16px;
-
     & textarea {
         display: block;
-    width: 100%;
-    max-width: 500px;
-    padding: 10px;
-    font-size: 16px;
-    line-height: 1.5;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: none;
-    &:focus {
-        border-color: #007bff;
-        outline: none;
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        line-height: 1.5;
+        border: 1px solid $secondary-color;
+        border-radius: 5px;
+        resize: none;
+        &:focus {
+            border-color: $primary-color;
+            outline: none;
+        }
     }
-}
-& button {
-    display: inline-block;
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin: 20px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    background-color: $primary-color;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
-    cursor: pointer;
-    &:hover {
-        background-color: #0062cc;
+    & button {
+        @include button;
     }
-    
-    &:focus {
-        outline: none;
-    }
-    
-    &:active {
-        box-shadow: none;
-      transform: translateY(1px);
-    }
-   }
-
 }
