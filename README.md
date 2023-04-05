@@ -1,6 +1,7 @@
 # test-task-react-typescript
 
-Develop a single page application in React: a text editor for notes with tags.
+ # Develop a single page application in React: a text editor for notes with tags.
+ 
 Actions:
 1. Create, edit, view and delete notes;
 2. Filter notes by tag;

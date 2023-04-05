@@ -20,11 +20,11 @@ const Tasks = (props: TasksProps) => {
           className="task-text"
           onClick={() => handleGetText(el.text, el.id)}
         >
-          {<div dangerouslySetInnerHTML={{ __html: el.text }}></div>}
+          {<p dangerouslySetInnerHTML={{ __html: el.text }}></p>}
         </div>
         <div className="btns">
           {el.update && (
-            <button onClick={() => handleEditTask(input, el.id)}>
+            <button className='btn-update' onClick={() => handleEditTask(input, el.id)}>
               update
             </button>
           )}

@@ -14,20 +14,28 @@
     margin-left: 10px;
   }
   & .btns {
-    width: 200px;
-    @include flex-center-end;
+    width: 25%;
+    margin-right: 10px;
+    @include flex-col-center-start;
   }
   & button {
     @include button;
   }
+  & .btn-update {
+    background-color: $warning-color;
+    padding: 10px 17px;
+  }
 }
 .task-text {
   cursor: pointer;
+  width: 60%;
   & p {
-    width: 150px;
-    padding: 3px;
     height: auto;
-    @include flex-col-start-center;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    word-break: break-word;
   }
   & span {
     background-color: $warning-color;
