@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700;900&display=swap');
+@import './styles/variables';
+@import './styles/mixins'; 
+@import './components/add-tsk-form/addTaskForm.scss';
+@import './components/tags/Tags.scss';
+@import './components/tasks/Tasks.scss';
+@import './components/task-item/TaskItem.scss';
+
+ body {
+  font-family: 'Roboto', sans-serif;
+ }
+
+.app-container {
+  margin: 0 auto;
+  max-width: 800px;
+  min-height: 100vh;
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 16px;
+  & h2 {
+    color: $info-color;
+  }
+ 
+}
+

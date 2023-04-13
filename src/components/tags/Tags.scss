@@ -1,0 +1,28 @@
+.tags-container {
+  width: 100%;
+  padding: 5px;
+  @include flex-center-sp-btwn;
+  & button {
+    @include button;
+    background-color: rgba(23, 23, 23, 0.2);
+  }
+}
+.tags {
+  margin: 10px;
+  width: 500px;
+  height: 30px;
+  @include flex-center-start;
+  & .tag {
+    width: auto;
+    margin: 3px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: $white-color;
+    background-color: $success-color;
+    cursor: pointer;
+  }
+}
+.tag.active {
+  background-color: $noactive-color;
+  color: $black-color;
+}

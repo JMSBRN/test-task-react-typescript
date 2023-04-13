@@ -1,0 +1,27 @@
+.add-task-from {
+    width: 100%;
+    @include flex-col-center-start;
+    font-size: 16px;
+    & textarea {
+        display: block;
+        width: 80vw;
+        max-width: 800px;
+        height: 100px;
+        padding: 10px;
+        line-height: 1.5;
+        font-size: 19px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        color: $secondary-color;
+        border: 1px solid $secondary-color;
+        border-radius: 5px;
+        resize: none;
+        &:focus {
+            border-color: $primary-color;
+            outline: none;
+        }
+    }
+    & button {
+        @include button;
+    }
+}
